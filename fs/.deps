@@ -1,0 +1,4 @@
+yanc-schema.o: yanc-schema.c schema.h
+libschema.o: libschema.c schema.h
+schema.yy.o: schema.yy.c schema.h schema.tab.h
+schema.tab.o: schema.tab.c schema.h

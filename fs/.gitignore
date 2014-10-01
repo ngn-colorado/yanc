@@ -1,0 +1,4 @@
+yanc-schema
+*.tab.h
+*.tab.c
+*.yy.c
