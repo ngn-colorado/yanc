@@ -1,0 +1,164 @@
+"batch" {
+	compound *;
+}
+
+bro {
+	u64   state;
+	u64   admin_state;
+	scripts {
+		raw script;
+		u64 state;
+		u64 admin_state;
+		"vars.int" {
+			u64 *;
+		}
+		"vars.ip32" {
+			ip32 *;
+		}
+		"vars.str" {
+			str *;
+		}
+	}
+}
+
+switches {
+	u64  datapath_id;
+
+	u32  n_buffers;
+	u8   n_tables;
+	u32  capabilities;
+	u32  actions;
+	u16  flags;
+	u16  miss_send_len;
+
+	flows {
+		u64  cookie;
+		u16  priority;
+		u16  hard_timeout;
+		u16  idle_timeout;
+
+		u32  version;
+
+		"match" {
+			u32   wildcards;
+			u16   in_port;
+			eth   dl_dst;
+			eth   dl_src;
+			u16   dl_vlan;
+			u8    dl_vlan_pcp;
+			u16   dl_type;
+			u8    nw_proto;
+			u8    nw_tos;
+			ip32  nw_src;
+			ip32  nw_dst;
+			u16   tp_src;
+			u16   tp_dst;
+		}
+
+		"actions" {
+			str   actions;
+			u16   output;
+			u16   output-*;
+			u16   output_max_len;
+			eth   dl_dst;
+			eth   dl_src;
+			u16   dl_type;
+			u16   vlan;
+			u8    vlan_pcp;
+			u8    nw_proto;
+			u8    nw_tos;
+			ip32  nw_src;
+			ip32  nw_dst;
+			u16   tp_src;
+			u16   tp_dst;
+		}
+	}
+
+	packet_in {
+		u32   buffer_id;
+		u16   total_len;
+		raw   data;
+		u32   in_port;
+		u8    reason;
+	}
+
+	packet_out {
+
+		u32   buffer_id;
+		raw   data;
+		u32   in_port;
+		str   state;
+
+		"actions" {
+			str   actions;
+			u16   output;
+			u16   output_max_len;
+			eth   dl_dst;
+			eth   dl_src;
+			u16   dl_type;
+			u16   vlan;
+			u8    vlan_pcp;
+			u8    nw_proto;
+			u8    nw_tos;
+			ip32  nw_src;
+			ip32  nw_dst;
+			u16   tp_src;
+			u16   tp_dst;
+		}
+	}
+
+	ports {
+		u32   port_no;
+		eth   hw_addr;
+		str   name;
+		u32   config;
+		u32   state;
+		u32   f_curr;
+		u32   f_advertised;
+		u32   f_supported;
+		u32   f_peer;
+
+		ln    peer;
+
+		"stats" {
+			u32  rx_packets;
+			u32  rx_bytes;
+			u32  rx_dropped;
+			u32  rx_errors;
+			u32  tx_packets;
+			u32  tx_bytes;
+			u32  tx_dropped;
+			u32  tx_errors;
+			u32  collisions;
+		}
+	}
+}
+hosts {
+	eth  mac-addr;
+	str  ip4-addr;
+	str  ip6-addr;
+	raw  data;
+	str  iedName;
+	ln   port;
+}
+"pubsub" {
+	str   _info;
+	str   pid;
+	trees {
+		u32 version;
+		raw data;
+		"publisher" {
+			str  ip-addr;
+			ln   node;
+			raw  data;
+		}
+		subscribers {
+			str  ip-addr;
+			ln   node;
+			raw  data;
+		}
+		flows {
+			ln flow;
+		}
+	}	
+}
