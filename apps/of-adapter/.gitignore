@@ -1,0 +1,4 @@
+.DS_Store
+.deps
+*.o
+yanc-of-adapter
