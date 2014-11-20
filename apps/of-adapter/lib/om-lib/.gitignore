@@ -1,0 +1,40 @@
+# Compiled Object files
+*.slo
+*.lo
+*.o
+
+# Compiled Dynamic libraries
+*.so
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+
+# Build and bin directories
+.deps
+bin/*
+build/*
+examples/example_net_addresses
+examples/example_net_agent
+examples/example_net_datagram_socket
+examples/example_net_inotify_handler
+examples/example_net_packing
+examples/example_net_stream_client
+examples/example_net_stream_listener
+examples/example_raw_socket
+examples/example_tools_file
+examples/example_tools_random
+examples/example_tunnel_device
+examples/example_tools_dir
+examples/example_net_dbus_adapter
+examples/example_async_epoll_wrapper
+examples/example_ipc_dbus
+
+tools/dbus_send_sig/dbus_send_sig
+tools/dbus_call_meth/dbus_call_meth
+
+test/test_ipc_dbus_message
+
+# OSX specific
+.DS_Store

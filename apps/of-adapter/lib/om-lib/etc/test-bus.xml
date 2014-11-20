@@ -1,0 +1,42 @@
+<!DOCTYPE busconfig PUBLIC "-//freedesktop//DTD D-Bus Bus Configuration 1.0//EN"
+	 "http://www.freedesktop.org/standards/dbus/1.0/busconfig.dtd">
+
+<busconfig>
+
+	<listen>unix:path=/tmp/test_bus</listen>
+
+	<policy context="default">
+
+		<!-- allow access by all users -->
+		<allow user="*"/>
+
+		<!-- allow name ownership by all users -->
+		<allow own="*"/>
+
+		<!-- allow sending messages by all connections -->
+		<allow send_type="method_call"/>
+
+		<allow send_destination="*" eavesdrop="true"/>
+		<allow eavesdrop="true"/>
+
+		<!-- signals and reply messages (method returns, errors) are allowed -->
+		<allow send_type="signal"/>
+		<allow send_requested_reply="true" send_type="method_return"/>
+		<allow send_requested_reply="true" send_type="error"/>
+
+		<!-- all messages may be received -->
+		<allow receive_type="method_call"/>
+		<allow receive_type="method_return"/>
+		<allow receive_type="error"/>
+		<allow receive_type="signal"/>
+
+		<!-- allow anyone to talk to the message bus -->
+		<allow send_destination="org.freedesktop.DBus"/>
+		 
+		<!-- but disallow some specific bus services -->
+	 	<deny send_destination="org.freedesktop.DBus"
+			send_interface="org.freedesktop.DBus"
+			send_member="UpdateActivationEnvironment"/>
+	</policy>	
+
+</busconfig>
