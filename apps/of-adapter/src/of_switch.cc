@@ -122,7 +122,12 @@ void OFSwitch::handle_packet_in(uint8_t v, const struct ofp11_packet_in& msg)
 
 void OFSwitch::handle_packet_in(uint8_t v, const struct ofp_packet_in& in)
 {
-	uint8_t* ofp11_in = new uint8_t[ntohs(in.header.length)];
+	/* 
+	 * Date: Feb 16, 2016
+	 * Edited by: Sohil
+	 * Size of packet_in is 24 bytes in OpenFlow 1.1 as opposed to 20 bytes in OpenFlow 1.0. So adding 4 bytes  
+	 */
+	uint8_t* ofp11_in = new uint8_t[ntohs(in.header.length) + 4];
 	
 	ofp11_packet_in_from_ofp_packet_in(in, (ofp11_packet_in&)*ofp11_in);
 	handle_packet_in(OFP_VERSION_1_1, (ofp11_packet_in&)*ofp11_in);
